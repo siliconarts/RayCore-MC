@@ -1,0 +1,135 @@
+## Copyright(c) 2010 ~ 2013 Siliconarts, Inc. All Rights Reserved
+## API OpenRC + EGL
+## Date : 
+
+CONFIG_PATH		:= $(PWD)/../../lib
+include $(CONFIG_PATH)/config.mk
+
+SRC_PATH		:= ../../API/source
+
+#-------------------------------------------------
+# 			library
+#-------------------------------------------------
+TARGETPATH		:= ../../lib/$(OS_ARCH)
+TARGETNAME		:= libRayCoreAPI
+TARGET_DLIB		:= $(TARGETNAME).so
+TARGET_SLIB		:= $(TARGETNAME).a
+
+TARGET_A		:= $(TARGETPATH)/$(TARGET_SLIB)
+TARGET_SO		:= $(TARGETPATH)/$(TARGET_DLIB)
+
+LIBDIR			:= $(LIBDIR) -lstdc++ -lpthread -lRCDDK -lm -lX11
+
+#-------------------------------------------------
+# 
+#-------------------------------------------------
+INC  := \
+	-I$(SRC_PATH) \
+	-I../../include \
+	-I../../include/khronos \
+	-I../../include/siliconarts
+
+SRCS := \
+	$(SRC_PATH)/common/AtomicGL.cpp \
+	$(SRC_PATH)/common/DrawBuffer.cpp \
+	$(SRC_PATH)/common/gl_Memory.cpp \
+	$(SRC_PATH)/common/gl_Object.cpp \
+	$(SRC_PATH)/common/gl_Util.cpp \
+	$(SRC_PATH)/common/ProcTable.cpp \
+	$(SRC_PATH)/egl/platform/eglWindow.cpp \
+	$(SRC_PATH)/egl/platform/X11/eglWindowX11.cpp \
+	$(SRC_PATH)/egl/eglAPI.cpp \
+	$(SRC_PATH)/egl/eglCommon.cpp \
+	$(SRC_PATH)/egl/eglConfig.cpp \
+	$(SRC_PATH)/egl/eglContext.cpp \
+	$(SRC_PATH)/egl/eglDisplay.cpp \
+	$(SRC_PATH)/egl/eglSurface.cpp \
+	$(SRC_PATH)/gles1/glesAPI.cpp \
+	$(SRC_PATH)/glrc/tb/tb_KDTreeBuilder.cpp \
+	$(SRC_PATH)/glrc/tb/tb_ScanTreeBuilder.cpp \
+	$(SRC_PATH)/glrc/tb/tb_TreeBuilder.cpp \
+	$(SRC_PATH)/glrc/tb/tb_Main.cpp \
+	$(SRC_PATH)/glrc/util/rc_util.cpp \
+	$(SRC_PATH)/glrc/rcAPI.cpp \
+	$(SRC_PATH)/glrc/rcBuffer.cpp \
+	$(SRC_PATH)/glrc/rcCommon.cpp \
+	$(SRC_PATH)/glrc/rcContext.cpp \
+	$(SRC_PATH)/glrc/rcContext1.cpp \
+	$(SRC_PATH)/glrc/rcDraw.cpp \
+	$(SRC_PATH)/glrc/rcExtension.cpp \
+	$(SRC_PATH)/glrc/rcGet.cpp \
+	$(SRC_PATH)/glrc/rcLight.cpp \
+	$(SRC_PATH)/glrc/rcMaterial.cpp \
+	$(SRC_PATH)/glrc/rcMatrix.cpp \
+	$(SRC_PATH)/glrc/rcStatic.cpp \
+	$(SRC_PATH)/glrc/rcTexture.cpp \
+	$(SRC_PATH)/glrc/rcVertexObject.cpp 
+
+
+OBJS := $(SRCS:.cpp=.o)
+
+DEPS := $(OBJS:.o=.d)
+
+CFLAGS:= $(CFLAGS) -DGL_GLEXT_PROTOTYPES -DGLES_FTYPE_IS_FLOAT -DEGL_RAYCORE_Extension
+
+#-------------------------------------------------
+# 
+#-------------------------------------------------
+#all : $(TARGET_A) $(TARGET_SO)
+all : $(TARGET_SO)
+
+static : $(TARGET_A) 
+
+dynamic : $(TARGET_SO) 
+
+$(TARGET_SO): $(DEPS) $(OBJS) 
+$(TARGET_A): $(DEPS) $(OBJS) 
+
+clean:
+	@$(RM) $(OBJS)
+	@$(RM) $(TARGET_A)
+	@$(RM) $(TARGET_SO)
+	@$(RM) -f $(DEPS) $(DEPS:.d=.d.*)
+
+#-------------------------------------------------
+# generic rules
+#-------------------------------------------------
+%.o: %.c 
+	@echo ' -Compiling...'
+	$(CC) $(CDEFS) $(CFLAGS) $(INC) -c $< -o $@
+
+%.o: %.cpp
+	@echo ' -Compiling...'
+	$(CXX) $(CDEFS) $(CFLAGS) -fPIC $(INC) -c $< -o $@
+
+%.d: %.c
+	@set -e; rm -f $@; \
+	$(CC) -M $(CFLAGS) $(INC) $< >> $@.$$$$; \
+	sed 's#^[^.]*[.]o#$*.o#g' $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+%.d: %.cpp
+	@set -e; rm -f $@; \
+	$(CXX) -M $(CFLAGS) $(INC) -fPIC $< >> $@.$$$$; \
+	sed 's#^[^.]*[.]o#$*.o#g' $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+$(TARGET_A): 
+	@echo
+	@echo '*** Build Static Library ***'
+	$(AR) $(ARFLAGS) $@ $(OBJS)
+	$(RANLIB) $@
+
+$(TARGET_SO):
+	@echo
+	@echo '*** Build Shared Library ***'
+###A Error will be occured by using $(LD) instead of using g++ -shared.###
+#	$(LD) $(LDFLAGS) -shared -o $@ $(OBJS)
+	$(CXX) $(LDFLAGS) -shared -o $@ $(OBJS) $(LIBDIR)
+
+#########################################################################
+# Dependency
+ifeq ($(DEPS),$(wildcard $(DEPS)))
+include  $(DEPS)
+endif
+

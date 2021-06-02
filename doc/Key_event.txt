@@ -1,0 +1,14 @@
+############################################################
+# Key events #
+############################################################
+
+# General Operation  
+  
+  . I         : Reset all configuration
+  . O, L      : Toggle the light in order
+  . S         : Toggle the shadow effect
+  . X         : Toggle the usage of a texture's LOD
+  . +, -      : Increase and decrease the value of a depth bounce in range [0~14], respectively.
+  . Q, W      : Increase and decrease the threshold level of a ray bounce in ragne [None, 0~8], respectively.
+  . Up, down arrow : Increase and decrease the rendering quality in a general, fast, nice and fast-nice case, respectively. 
+  . Left, right arrow: Increase and decrease the frame speed by a frame's skip in ragne [1, 2, 4, 8, 16], respectively.

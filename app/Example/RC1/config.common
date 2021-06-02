@@ -1,0 +1,83 @@
+## Copyright(c) 2010 ~ 2013 Siliconarts, Inc. All Rights Reserved
+## common tutorial configuration
+## Date : 
+
+
+	CONFIG_PATH		:= $(PWD)/../..
+	include ../../../lib/config.mk
+
+
+#-------------------------------------------------
+# library
+#-------------------------------------------------
+TARGETPATH		:= $(OUTPUTPATH)
+TARGET_EXE		:= $(TARGETPATH)/$(TARGETNAME)
+ifdef CROSS
+	LIBDIR			:= $(LIBDIR) -lstdc++ -lpthread -lm -lX11 -lRayCoreAPI -lRCDDK -lRCHAL
+else
+	LIBDIR			:= $(LIBDIR) -lstdc++ -lpthread -lm -lX11 -lRayCoreAPI -lRCDDK -lRCHAL -lRCDDIArriaV
+endif
+
+#-------------------------------------------------
+#  
+#-------------------------------------------------
+INC  := \
+	-I$(SRC_PATH) \
+	-I../../../include \
+	-I../../../include/khronos \
+	-I../../../include/siliconarts \
+	-I../RCFramework/src
+
+OBJS := $(SRCS:.cpp=.o)
+
+DEPS := $(OBJS:.o=.d)
+
+CFLAGS:= $(CFLAGS) -DGL_GLEXT_PROTOTYPES -DGLES_FTYPE_IS_FLOAT
+#-------------------------------------------------
+# 
+#-------------------------------------------------
+all : $(TARGET_EXE)
+
+$(TARGET_EXE): $(DEPS) $(OBJS) 
+
+clean:
+	@$(RM) $(OBJS)
+	@$(RM) $(TARGET_A)
+	@$(RM) $(TARGET_SO)
+	@$(RM) -f $(DEPS) $(DEPS:.d=.d.*)
+	@$(RM) -f $(TARGET_EXE)
+	
+#-------------------------------------------------
+# generic rules
+#-------------------------------------------------
+%.o: %.c 
+	@echo ' -Compiling...'
+	$(CC) $(CDEFS) $(CFLAGS) $(INC) -c $< -o $@
+
+%.o: %.cpp
+	@echo ' -Compiling...'
+	$(CXX) $(CDEFS) $(CFLAGS) $(INC) -c $< -o $@
+
+%.d: %.c
+	@set -e; rm -f $@; \
+	$(CC) -M $(CFLAGS) $(INC) $< >> $@.$$$$; \
+	sed 's#^[^.]*[.]o#$*.o#g' $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+%.d: %.cpp
+	@set -e; rm -f $@; \
+	$(CXX) -M $(CFLAGS) $(INC) $< >> $@.$$$$; \
+	sed 's#^[^.]*[.]o#$*.o#g' $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+$(TARGET_EXE):
+	@echo
+	@echo '*** Build execution file ***'
+###A Error will be occured by using $(LD) instead of using g++ -shared.###
+	$(CXX) $(LDFLAGS) -o $@ ../../../lib/RCFramework.a $(OBJS) $(LIBDIR)
+
+#########################################################################
+# Dependency
+ifeq ($(DEPS),$(wildcard $(DEPS)))
+include  $(DEPS)
+endif

@@ -1,0 +1,7 @@
+NodeBaseAddr     32'h0
+ListBaseAddr     32'h2000000
+TriBaseAddr      32'h3000000
+TriInfoBaseAddr  32'h4000000
+TexBaseAddr      32'h8000000
+TransmitBaseAddr 32'hf000000
+FBBaseAddr0      32'hf800000

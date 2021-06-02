@@ -1,0 +1,105 @@
+## Copyright(c) 2010 ~ 2013 Siliconarts, Inc. All Rights Reserved
+## device driver interface
+## Date : 
+
+CONFIG_PATH		:= $(PWD)/../../lib
+include $(CONFIG_PATH)/config.mk
+
+SRC_PATH		:= ../../../System/SubSystem/ArriaVSystem/src
+PCIE_SRC_PATH	:= ../../../System/SubSystem/common/PCIe
+
+#-------------------------------------------------
+# 		library
+#-------------------------------------------------
+TARGETPATH		:= ../../lib/$(OS_ARCH)
+TARGETNAME		:= libRCDDIArriaV
+TARGET_DLIB		:= $(TARGETNAME).so
+TARGET_SLIB		:= $(TARGETNAME).a
+
+TARGET_A		:= $(TARGETPATH)/$(TARGET_SLIB)
+TARGET_SO		:= $(TARGETPATH)/$(TARGET_DLIB)
+
+LIBDIR			:= $(LIBDIR) -lstdc++ -lpthread
+
+#-------------------------------------------------
+# 
+#-------------------------------------------------
+INC  :=	 \
+	-I$(SRC_PATH) \
+	-I$(PCIE_SRC_PATH) \
+	-I$(PCIE_SRC_PATH)/linux \
+	-I../../include \
+	-I../../include/siliconarts
+
+SRCS := \
+	$(SRC_PATH)/ArriaVSystem.cpp \
+	$(PCIE_SRC_PATH)/NativeInterface.cpp \
+	$(PCIE_SRC_PATH)/linux/PCIeSystem.cpp \
+	$(PCIE_SRC_PATH)/linux/PCIeMemory.cpp \
+	$(PCIE_SRC_PATH)/SystemMemory.cpp
+	
+OBJS := $(SRCS:.cpp=.o)
+
+DEPS := $(OBJS:.o=.d)
+
+CFLAGS:= $(CFLAGS) -DSYSTEM_IMPLEMENTATION
+#-------------------------------------------------
+# 
+#-------------------------------------------------
+#all : $(TARGET_A) $(TARGET_SO)
+all : $(TARGET_SO)
+
+static : $(TARGET_A) 
+
+dynamic : $(TARGET_SO) 
+
+$(TARGET_SO): $(DEPS) $(OBJS) 
+$(TARGET_A): $(DEPS) $(OBJS) 
+
+clean:
+	@$(RM) $(OBJS)
+	@$(RM) $(TARGET_A)
+	@$(RM) $(TARGET_SO)
+	@$(RM) -f $(DEPS) $(DEPS:.d=.d.*)
+
+#-------------------------------------------------
+# generic rules
+#-------------------------------------------------
+%.o: %.c 
+	@echo ' -Compiling...'
+	$(CC) $(CDEFS) $(CFLAGS) $(INC) -c $< -o $@
+
+%.o: %.cpp
+	@echo ' -Compiling...'
+	$(CXX) $(CDEFS) $(CFLAGS) -fPIC $(INC) -c $< -o $@
+
+%.d: %.c
+	@set -e; rm -f $@; \
+	$(CC) -M $(CFLAGS) $(INC) $< >> $@.$$$$; \
+	sed 's#^[^.]*[.]o#$*.o#g' $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+%.d: %.cpp
+	@set -e; rm -f $@; \
+	$(CXX) -M $(CFLAGS) $(INC) -fPIC $< >> $@.$$$$; \
+	sed 's#^[^.]*[.]o#$*.o#g' $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+$(TARGET_A): 
+	@echo
+	@echo '*** Build Static Library ***'
+	$(AR) $(ARFLAGS) $@ $(OBJS)
+	$(RANLIB) $@
+
+$(TARGET_SO):
+	@echo
+	@echo '*** Build Shared Library ***'
+###A Error will be occured by using $(LD) instead of using g++ -shared.###
+#	$(LD) $(LDFLAGS) -shared -o $@ $(OBJS)
+	$(CXX) $(LDFLAGS) -shared -o $@ $(OBJS) $(LIBDIR)
+
+#########################################################################
+# Dependency
+ifeq ($(DEPS),$(wildcard $(DEPS)))
+include  $(DEPS)
+endif

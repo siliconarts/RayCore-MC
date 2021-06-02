@@ -1,0 +1,56 @@
+## Copyright(c) 2010 ~ 2013 Siliconarts, Inc. All Rights Reserved
+## makefiles
+## Date :
+
+all:
+	cd RCFramework;				$(MAKE) -f Makefile;		cd ..
+	cd BindBuffer;				$(MAKE) -f Makefile;		cd ..
+	cd BoneAnimation;			$(MAKE) -f Makefile;		cd ..
+	cd Clear;					$(MAKE) -f Makefile;		cd ..
+	cd Cube;					$(MAKE) -f Makefile;		cd ..
+	cd Guide_Cornell;			$(MAKE) -f Makefile;		cd ..
+	cd Guide_Cube;				$(MAKE) -f Makefile;		cd ..
+	cd Guide_Earth;				$(MAKE) -f Makefile;		cd ..
+	cd Guide_Frustum;			$(MAKE) -f Makefile;		cd ..
+	cd Guide_LookAt;			$(MAKE) -f Makefile;		cd ..
+	cd Guide_Perspective;		$(MAKE) -f Makefile;		cd ..
+	cd Guide_PhongShading;		$(MAKE) -f Makefile;		cd ..
+	cd Guide_Reflection;		$(MAKE) -f Makefile;		cd ..
+	cd Guide_Refraction;		$(MAKE) -f Makefile;		cd ..
+	cd Guide_Rotate;			$(MAKE) -f Makefile;		cd ..
+	cd Guide_Scale;				$(MAKE) -f Makefile;		cd ..
+	cd Guide_Transform1;		$(MAKE) -f Makefile;		cd ..
+	cd Guide_Transform2;		$(MAKE) -f Makefile;		cd ..
+	cd Guide_Translate;			$(MAKE) -f Makefile;		cd ..
+	cd ReflectCube;				$(MAKE) -f Makefile;		cd ..
+	cd RefractDiamond;			$(MAKE) -f Makefile;		cd ..
+	cd Teapot;					$(MAKE) -f Makefile;		cd ..
+	cd TexCube;					$(MAKE) -f Makefile;		cd ..
+	cd ScenePlayer;				$(MAKE) -f Makefile;		cd ..
+	
+clean:
+	cd RCFramework;				$(MAKE) -f Makefile clean;	cd ..
+	cd BindBuffer;				$(MAKE) -f Makefile clean;	cd ..
+	cd BoneAnimation;			$(MAKE) -f Makefile clean;	cd ..
+	cd Clear;					$(MAKE) -f Makefile clean;	cd ..
+	cd Cube;					$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Cornell;			$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Cube;				$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Earth;				$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Frustum;			$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_LookAt;			$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Perspective;		$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_PhongShading;		$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Reflection;		$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Refraction;		$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Rotate;			$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Scale;				$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Transform1;		$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Transform2;		$(MAKE) -f Makefile clean;	cd ..
+	cd Guide_Translate;			$(MAKE) -f Makefile clean;	cd ..
+	cd ReflectCube;				$(MAKE) -f Makefile clean;	cd ..
+	cd RefractDiamond;			$(MAKE) -f Makefile clean;	cd ..
+	cd Teapot;					$(MAKE) -f Makefile clean;	cd ..
+	cd TexCube;					$(MAKE) -f Makefile clean;	cd ..
+	cd ScenePlayer;				$(MAKE) -f Makefile clean;	cd ..
+	

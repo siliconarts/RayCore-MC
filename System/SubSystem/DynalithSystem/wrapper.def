@@ -1,0 +1,8 @@
+; wrapper.def : Declares the module parameters for the DLL.
+
+LIBRARY      "DynalithSystem.dll"
+;DESCRIPTION  'Dynalith subsystem library'
+
+EXPORTS
+    ; Explicit exports can go here
+CreateSystemImplementation
