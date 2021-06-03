@@ -1,5 +1,0 @@
-full path: D:\RC_Project\Profiles\CRC\bin\
-redirecting D3D11CreateDeviceAndSwapChain
-redirecting CreateDXGIFactory1
-redirecting IDXGIFactory1->CreateSwapChain
-initialising shader environment
