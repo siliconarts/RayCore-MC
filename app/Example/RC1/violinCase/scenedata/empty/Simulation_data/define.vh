@@ -1,9 +1,0 @@
-`define NodeBaseAddr     30'h0
-`define ListBaseAddr     30'h800000
-`define TriBaseAddr      30'hc00000
-`define TriInfoBaseAddr  30'h1000000
-`define TexBaseAddr      30'h2000000
-`define TransmitBaseAddr 30'h3c00000
-`define FBBaseAddr0      30'h3e00000
-`define CmdCount         15'h18c
-`define FrameReadCount   16'hbb80

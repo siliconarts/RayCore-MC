@@ -24,7 +24,7 @@ sh build.sh
 	```
 	# At the root of the repository
 	cd bin
-	./rc_car
+	./rc_museum
 	```	
 	
 3. If you want to create your own samples, you can refer to other documents in the "doc" directory.
