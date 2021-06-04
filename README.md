@@ -17,7 +17,7 @@ mkdir ./app/lib/linux_x64
 sh build.sh
 ```
 
-## Usageithu
+## Usage
 1. Follow the instruction in the "RayCore® MC Dev Kit Quick Start Guide.pdf" file in the "doc" directory to set up the FPGA hardware.
 2. Download [scene.zip](https://drive.google.com/file/d/1T0YQFlnPm5GfwsBhCuofElV-MbpZj3ZF/view?usp=sharing), and uncompress the zip file to the "bin" directory.
 2. Run demos		
