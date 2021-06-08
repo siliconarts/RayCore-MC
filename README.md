@@ -5,7 +5,7 @@ As an Intel Gold partner, we provide you with a ray tracing GPU solution that ha
 
 Real Photo             |  Image rendered by RayCore MC 
 :-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/83271439/121129856-85b02680-c868-11eb-9e27-55b3cfedaac9.jpg" width="400" height="685"| <img src="https://user-images.githubusercontent.com/83271439/121129213-98762b80-c867-11eb-96e2-1eb29564fdc4.png" width="400" height="685"> 
+<img src="https://user-images.githubusercontent.com/83271439/121129856-85b02680-c868-11eb-9e27-55b3cfedaac9.jpg" width="400" height="685"> | <img src="https://user-images.githubusercontent.com/83271439/121129213-98762b80-c867-11eb-96e2-1eb29564fdc4.png" width="400" height="685">
 
 ## Requirement
 
