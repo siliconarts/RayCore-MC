@@ -5,7 +5,7 @@ As an Intel Gold partner, we provide you with a ray tracing GPU solution that ha
 
 ![Original image](images/Original_RCMC.jpg) | ![Rendered image](images/RCMC_Rendering.png)
 
-![RCMC_Rendering](<img src="https://user-images.githubusercontent.com/83271439/121129213-98762b80-c867-11eb-96e2-1eb29564fdc4.png" width=150 height="280">)
+<img src="https://user-images.githubusercontent.com/83271439/121129213-98762b80-c867-11eb-96e2-1eb29564fdc4.png" width=150 height="280">
 
 
 ## Requirement
