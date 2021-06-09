@@ -3,7 +3,7 @@ RayCore MC is a real-time path tracing GPU IP Core. Its path tracing and soft sh
 RayCore MC IP core supports advanced graphic effects such as global illumination, soft shadow, depth of field, glossy reflection, and motion blur. Its Multiple-Instruction, Multiple-Data (MIMD) architecture enables real-time render processing and is highly optimized for low power consumption.
 As an Intel Gold partner, we provide you with a ray tracing GPU solution that has RayCore MC integrated into Intel Arria 10 FPGA. 
 
-similar to the EGL1 syntax --> Easy to develop
+similar to the OpenGL ES1.1 syntax --> Easy to develop
 
 Real Photo             |  Image rendered by RayCore MC 
 :-------------------------:|:-------------------------:
