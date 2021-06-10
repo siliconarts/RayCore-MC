@@ -7,7 +7,7 @@ OpenGI API for Raycore MC is similar to the OpenGL ES 1.1, which enables users t
 
 Real Photo             |  Image rendered by RayCore MC 
 :-------------------------:|:-------------------------:
-<center><img src="https://user-images.githubusercontent.com/83271439/121129856-85b02680-c868-11eb-9e27-55b3cfedaac9.jpg" width="400" height="685"> </center>| <img src="https://user-images.githubusercontent.com/83271439/121129213-98762b80-c867-11eb-96e2-1eb29564fdc4.png" width="400" height="685">
+<img src="https://user-images.githubusercontent.com/83271439/121129856-85b02680-c868-11eb-9e27-55b3cfedaac9.jpg" width="400" height="685">| <img src="https://user-images.githubusercontent.com/83271439/121129213-98762b80-c867-11eb-96e2-1eb29564fdc4.png" width="400" height="685">
 
 ## Requirement
 
