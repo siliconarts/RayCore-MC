@@ -38,4 +38,4 @@ sh build.sh
 4. If you want to create your own samples, you can refer to other documents in the "doc" directory.
 
 ## License
-See [License](License)
+See [License](LISENSE)
