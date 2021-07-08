@@ -28,7 +28,7 @@ sh build.sh
 
 ## Usage 
 1. Follow the instruction in the "RayCore® MC Dev Kit Quick Start Guide.pdf" file in the "doc" directory to set up the FPGA hardware.
-2. Download [scene.zip](https://drive.google.com/file/d/1T0YQFlnPm5GfwsBhCuofElV-MbpZj3ZF/view?usp=sharing), and uncompress the zip file to the "bin" directory.
+2. Download [scene.zip](https://drive.google.com/file/d/154nD3hArrj4if2zlBjn_2jjdaWX9lCYt/view?usp=sharing), and uncompress the zip file to the "bin" directory.
 3. Run demos		
 	```
 	# At the root of the repository
