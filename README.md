@@ -22,7 +22,6 @@ Real Photo             |  Image rendered by RayCore MC
 4. Run the build.sh script.
 ```
 git clone https://github.com/siliconarts/RCMC.git
-mkdir ./app/lib/linux_x64
 sh build.sh
 ```
 
